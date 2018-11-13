@@ -33,6 +33,7 @@
 		FC4FFCCD219A951000317E8F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FC4FFCD0219A951000317E8F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FC4FFCD2219A951000317E8F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FC605895219B23C4008DA4FC /* Herafi-admin-Panel.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Herafi-admin-Panel.entitlements"; sourceTree = "<group>"; };
 		FC8E81AA219A97A90062FCE0 /* LoginContoller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginContoller.swift; sourceTree = "<group>"; };
 		FC8E81AC219A97C80062FCE0 /* SignUpController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpController.swift; sourceTree = "<group>"; };
 		FC8E81AF219A97E10062FCE0 /* MainOrderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainOrderCell.swift; sourceTree = "<group>"; };
@@ -95,6 +96,7 @@
 		FC4FFCC5219A950E00317E8F /* Herafi-admin-Panel */ = {
 			isa = PBXGroup;
 			children = (
+				FC605895219B23C4008DA4FC /* Herafi-admin-Panel.entitlements */,
 				FC8E81B3219A97EF0062FCE0 /* userProfile */,
 				FC8E81AE219A97D60062FCE0 /* order */,
 				FC8E81A9219A97780062FCE0 /* Login */,
@@ -172,6 +174,11 @@
 				TargetAttributes = {
 					FC4FFCC2219A950E00317E8F = {
 						CreatedOnToolsVersion = 10.1;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -414,6 +421,7 @@
 			baseConfigurationReference = D9B94EEC1CD9415655C7782E /* Pods-Herafi-admin-Panel.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "Herafi-admin-Panel/Herafi-admin-Panel.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8FGH63V8Q9;
 				INFOPLIST_FILE = "Herafi-admin-Panel/Info.plist";
@@ -433,6 +441,7 @@
 			baseConfigurationReference = 724866B20E3B4B540EE2BB1A /* Pods-Herafi-admin-Panel.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "Herafi-admin-Panel/Herafi-admin-Panel.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8FGH63V8Q9;
 				INFOPLIST_FILE = "Herafi-admin-Panel/Info.plist";
