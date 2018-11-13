@@ -205,7 +205,7 @@ class OrderController: UIViewController {
         view.addSubview(servieLable)
         servieLable.anchor(top: serviceTitleLabel.bottomAnchor, left: serviceTitleLabel.leftAnchor, bottom: nil, right: serviceTitleLabel.rightAnchor, paddingTop: 2, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 30)
         
-        guard let messageCount = order?.message.characters.count else { return }
+        guard let messageCount = order?.message.count else { return }
         print("messageCount:",messageCount)
         if messageCount > 0 {
             

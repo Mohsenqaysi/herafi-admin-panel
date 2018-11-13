@@ -9,6 +9,19 @@
 import UIKit
 import Firebase
 
+extension Database {
+    static func fetchOrderData(orderId: String, completion: @escaping (Order) -> ()) {
+        print("order ID: \(orderId)")
+        
+        Database.database().reference().child("orders").child(orderId).observeSingleEvent(of: .value, with: { (snapshot) in
+            guard let dictonary =  snapshot.value as? [String: Any] else {return}
+            let order = Order(key: orderId, dictionary: dictonary)
+            completion(order)
+        }) { (err) in
+            print("Failed to fetch order data", err)
+        }
+    }
+}
 class UserProfileController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     let headerId = "headerId"
     let cellId = "cellId"
@@ -17,14 +30,10 @@ class UserProfileController: UICollectionViewController, UICollectionViewDelegat
         super.viewDidLoad()
         
         Database.database().reference().child("orders").observe(DataEventType.childAdded) { (snapshot) in
-            print(".child(order).observe(DataEventType.childAdded) ... was CALLED ")
             self.fetchOrdersAdded(snapshot: snapshot)
         }
         
         Database.database().reference().child("orders").observe(DataEventType.childRemoved) { (snapshot) in
-            print(".child(order).observe(DataEventType.childRemoved) ... was CALLED ")
-            print("removed item key: \(snapshot.key)")
-            
             let index = self.ordersList.index{ $0.key == snapshot.key}
             if let index = index {
                 self.ordersList.remove(at: index)
@@ -33,18 +42,11 @@ class UserProfileController: UICollectionViewController, UICollectionViewDelegat
         }
         
         Database.database().reference().child("completedOrders").observe(DataEventType.childAdded) { (snapshot) in
-            print("child(completedOrders).observe(DataEventType.childAdded) ... was CALLED ")
-            
             guard let dictionary = snapshot.value as? [String: Any] else {return}
-            print("orders dictionary size: \(dictionary.count)")
-            debugPrint(dictionary)
-            
             let order = Order(key: snapshot.key, dictionary: dictionary)
             self.completedOrdersList.append(order)
-            debugPrint(self.completedOrdersList)
             self.collectionView.reloadData()
         }
-
         
         collectionView.backgroundColor = .white
         navigationItem.title = Auth.auth().currentUser?.uid
@@ -96,7 +98,6 @@ class UserProfileController: UICollectionViewController, UICollectionViewDelegat
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let width = (view.frame.width - 2)
-        print("sizeForItemAt: \(width)")
         return CGSize(width: width, height: 60)
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
@@ -123,6 +124,7 @@ class UserProfileController: UICollectionViewController, UICollectionViewDelegat
             cell.newOrderIcon.isHidden = true
         }
         
+        //MARK: - push data to the order view
         let orderController = OrderController()
         orderController.order = ordersList[indexPath.item]
         orderController.hidesBottomBarWhenPushed = true
@@ -137,11 +139,9 @@ class UserProfileController: UICollectionViewController, UICollectionViewDelegat
         }
         //MARK: get user profile info
         Database.database().reference().child("users").child(uid).observeSingleEvent(of: .value, with: { (snapshot) in
-            print(snapshot.value ?? "")
             guard let dictionary = snapshot.value as? [String: Any] else {return}
             self.user = User(dictionary: dictionary)
             self.navigationItem.title = self.user?.username
-
             self.collectionView.reloadData()
             
         }) { (err) in
@@ -150,21 +150,12 @@ class UserProfileController: UICollectionViewController, UICollectionViewDelegat
     }
     
     var order: Order?
-    var ordersList = [Order](){
-        didSet{
-//            ordersList.reverse()
-        }
-    }
+    var ordersList = [Order]()
     
     fileprivate func fetchOrdersAdded(snapshot: DataSnapshot){
         guard let dictionary = snapshot.value as? [String: Any] else {return}
-        print("orders dictionary size: \(dictionary.count)")
-        debugPrint(dictionary)
-        
         let order = Order(key: snapshot.key, dictionary: dictionary)
         self.ordersList.insert(order, at: 0)
-//        self.ordersList.append(order)
-        debugPrint(self.ordersList)
         self.collectionView.reloadData()
     }
     
@@ -175,12 +166,10 @@ class UserProfileController: UICollectionViewController, UICollectionViewDelegat
         //MARK: get user profile info
         Database.database().reference().child("completedOrders").observe(.value, with: { (snapshot) in
             guard let dictionary = snapshot.value as? [String: Any] else {return}
-            print("completedOrdersList dictionary size: \(dictionary.count)")
             
             dictionary.forEach({ (key, order) in
                 let order = Order(key: key, dictionary: order as! [String : Any])
                 self.completedOrdersList.append(order)
-                debugPrint(self.completedOrdersList)
             })
             
             self.collectionView.reloadData()

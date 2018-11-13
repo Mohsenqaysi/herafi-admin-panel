@@ -30,7 +30,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUser
     }
     
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-        print("Token: \(deviceToken)")
+        print("Token: \(deviceToken.debugDescription)")
     }
     
     func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String) {
@@ -47,21 +47,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUser
         let userinfo = response.notification.request.content.userInfo
         if let orderID = userinfo["orderId"] as? String {
             print("orderId: \(orderID)")
+            print("order data from AppDeleagte")
+            Database.fetchOrderData(orderId: orderID) { (order) in
+                //MARK: - push data to the the order view controller
+                let orderContoller = OrderController()
+                orderContoller.order = order
+                
+                if let mainTabBarContoller = self.window?.rootViewController as? MainTabBarController {
+                    mainTabBarContoller.selectedIndex = 0
+//                    mainTabBarContoller.presentedViewController?.dismiss(animated: true, completion: nil)
+                    if let homenavigationContoller = mainTabBarContoller.viewControllers?.first as? UINavigationController {
+                        homenavigationContoller.popViewController(animated: true)
+                        orderContoller.hidesBottomBarWhenPushed = true
+                        homenavigationContoller.pushViewController(orderContoller, animated: true)
+                    }
+                }
+            }
         }
-        
-        //        UIApplication.shared.applicationIconBadgeNumber = 0
-        
-        //        if UserDefaults.standard.bool(forKey: "badge") {
-        //            let badge = UserDefaults.standard.integer(forKey: "badge")
-        //            let newVal = badge + 1
-        //            print("newVal: ",newVal)
-        //            UIApplication.shared.applicationIconBadgeNumber = newVal
-        //            UserDefaults.standard.set(newVal, forKey: "badge")
-        //            UserDefaults.standard.synchronize()
-        //        } else {
-        //            UserDefaults.standard.set(1, forKey: "badge")
-        //            UserDefaults.standard.synchronize()
-        //        }
     }
     
     private func attemtRegisteringForPushNotifications(application: UIApplication) {
