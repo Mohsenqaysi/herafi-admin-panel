@@ -7,21 +7,41 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		31F871FA990E7A960322157E /* Pods_Herafi_admin_Panel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B86F87F05E4D517831C5D9D3 /* Pods_Herafi_admin_Panel.framework */; };
 		FC4FFCC7219A950E00317E8F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC4FFCC6219A950E00317E8F /* AppDelegate.swift */; };
-		FC4FFCC9219A950E00317E8F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC4FFCC8219A950E00317E8F /* ViewController.swift */; };
 		FC4FFCCC219A950E00317E8F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FC4FFCCA219A950E00317E8F /* Main.storyboard */; };
 		FC4FFCCE219A951000317E8F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FC4FFCCD219A951000317E8F /* Assets.xcassets */; };
 		FC4FFCD1219A951000317E8F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FC4FFCCF219A951000317E8F /* LaunchScreen.storyboard */; };
+		FC8E81AB219A97A90062FCE0 /* LoginContoller.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC8E81AA219A97A90062FCE0 /* LoginContoller.swift */; };
+		FC8E81AD219A97C80062FCE0 /* SignUpController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC8E81AC219A97C80062FCE0 /* SignUpController.swift */; };
+		FC8E81B1219A97E10062FCE0 /* MainOrderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC8E81AF219A97E10062FCE0 /* MainOrderCell.swift */; };
+		FC8E81B2219A97E10062FCE0 /* OrderController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC8E81B0219A97E10062FCE0 /* OrderController.swift */; };
+		FC8E81B6219A97FB0062FCE0 /* UserProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC8E81B4219A97FB0062FCE0 /* UserProfileController.swift */; };
+		FC8E81B7219A97FB0062FCE0 /* UserprofileHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC8E81B5219A97FB0062FCE0 /* UserprofileHeader.swift */; };
+		FC8E81B9219A98B70062FCE0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FC8E81B8219A98B70062FCE0 /* GoogleService-Info.plist */; };
+		FCE32707219A95C900F534F4 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCE32706219A95C800F534F4 /* Extensions.swift */; };
+		FCE32711219A964F00F534F4 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCE32710219A964E00F534F4 /* MainTabBarController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		724866B20E3B4B540EE2BB1A /* Pods-Herafi-admin-Panel.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Herafi-admin-Panel.release.xcconfig"; path = "Pods/Target Support Files/Pods-Herafi-admin-Panel/Pods-Herafi-admin-Panel.release.xcconfig"; sourceTree = "<group>"; };
+		B86F87F05E4D517831C5D9D3 /* Pods_Herafi_admin_Panel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Herafi_admin_Panel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D9B94EEC1CD9415655C7782E /* Pods-Herafi-admin-Panel.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Herafi-admin-Panel.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Herafi-admin-Panel/Pods-Herafi-admin-Panel.debug.xcconfig"; sourceTree = "<group>"; };
 		FC4FFCC3219A950E00317E8F /* Herafi-admin-Panel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Herafi-admin-Panel.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC4FFCC6219A950E00317E8F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		FC4FFCC8219A950E00317E8F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		FC4FFCCB219A950E00317E8F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		FC4FFCCD219A951000317E8F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FC4FFCD0219A951000317E8F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FC4FFCD2219A951000317E8F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FC8E81AA219A97A90062FCE0 /* LoginContoller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginContoller.swift; sourceTree = "<group>"; };
+		FC8E81AC219A97C80062FCE0 /* SignUpController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpController.swift; sourceTree = "<group>"; };
+		FC8E81AF219A97E10062FCE0 /* MainOrderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainOrderCell.swift; sourceTree = "<group>"; };
+		FC8E81B0219A97E10062FCE0 /* OrderController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderController.swift; sourceTree = "<group>"; };
+		FC8E81B4219A97FB0062FCE0 /* UserProfileController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileController.swift; sourceTree = "<group>"; };
+		FC8E81B5219A97FB0062FCE0 /* UserprofileHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserprofileHeader.swift; sourceTree = "<group>"; };
+		FC8E81B8219A98B70062FCE0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		FCE32706219A95C800F534F4 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		FCE32710219A964E00F534F4 /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MainTabBarController.swift; path = "../../../../Google Drive/InstagramFirebaseApp/HerafiAdmin/HerafiAdmin/MainTabBarController.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,17 +49,38 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				31F871FA990E7A960322157E /* Pods_Herafi_admin_Panel.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		103A096F5CC9BC526F0B4E99 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B86F87F05E4D517831C5D9D3 /* Pods_Herafi_admin_Panel.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		64E55F65B859C1CFA1A9CF3A /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				D9B94EEC1CD9415655C7782E /* Pods-Herafi-admin-Panel.debug.xcconfig */,
+				724866B20E3B4B540EE2BB1A /* Pods-Herafi-admin-Panel.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		FC4FFCBA219A950E00317E8F = {
 			isa = PBXGroup;
 			children = (
+				FCE32706219A95C800F534F4 /* Extensions.swift */,
 				FC4FFCC5219A950E00317E8F /* Herafi-admin-Panel */,
 				FC4FFCC4219A950E00317E8F /* Products */,
+				64E55F65B859C1CFA1A9CF3A /* Pods */,
+				103A096F5CC9BC526F0B4E99 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -54,14 +95,47 @@
 		FC4FFCC5219A950E00317E8F /* Herafi-admin-Panel */ = {
 			isa = PBXGroup;
 			children = (
+				FC8E81B3219A97EF0062FCE0 /* userProfile */,
+				FC8E81AE219A97D60062FCE0 /* order */,
+				FC8E81A9219A97780062FCE0 /* Login */,
 				FC4FFCC6219A950E00317E8F /* AppDelegate.swift */,
-				FC4FFCC8219A950E00317E8F /* ViewController.swift */,
 				FC4FFCCA219A950E00317E8F /* Main.storyboard */,
+				FCE32710219A964E00F534F4 /* MainTabBarController.swift */,
 				FC4FFCCD219A951000317E8F /* Assets.xcassets */,
 				FC4FFCCF219A951000317E8F /* LaunchScreen.storyboard */,
 				FC4FFCD2219A951000317E8F /* Info.plist */,
+				FC8E81B8219A98B70062FCE0 /* GoogleService-Info.plist */,
 			);
 			path = "Herafi-admin-Panel";
+			sourceTree = "<group>";
+		};
+		FC8E81A9219A97780062FCE0 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				FC8E81AA219A97A90062FCE0 /* LoginContoller.swift */,
+				FC8E81AC219A97C80062FCE0 /* SignUpController.swift */,
+			);
+			name = Login;
+			path = "New Group";
+			sourceTree = "<group>";
+		};
+		FC8E81AE219A97D60062FCE0 /* order */ = {
+			isa = PBXGroup;
+			children = (
+				FC8E81AF219A97E10062FCE0 /* MainOrderCell.swift */,
+				FC8E81B0219A97E10062FCE0 /* OrderController.swift */,
+			);
+			path = order;
+			sourceTree = "<group>";
+		};
+		FC8E81B3219A97EF0062FCE0 /* userProfile */ = {
+			isa = PBXGroup;
+			children = (
+				FC8E81B4219A97FB0062FCE0 /* UserProfileController.swift */,
+				FC8E81B5219A97FB0062FCE0 /* UserprofileHeader.swift */,
+			);
+			name = userProfile;
+			path = "New Group1";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -71,9 +145,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = FC4FFCD5219A951000317E8F /* Build configuration list for PBXNativeTarget "Herafi-admin-Panel" */;
 			buildPhases = (
+				561C6930B7B2F04D302EB800 /* [CP] Check Pods Manifest.lock */,
 				FC4FFCBF219A950E00317E8F /* Sources */,
 				FC4FFCC0219A950E00317E8F /* Frameworks */,
 				FC4FFCC1219A950E00317E8F /* Resources */,
+				F750BFD27CBBDF28C3832D7A /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -123,6 +199,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FC4FFCD1219A951000317E8F /* LaunchScreen.storyboard in Resources */,
+				FC8E81B9219A98B70062FCE0 /* GoogleService-Info.plist in Resources */,
 				FC4FFCCE219A951000317E8F /* Assets.xcassets in Resources */,
 				FC4FFCCC219A950E00317E8F /* Main.storyboard in Resources */,
 			);
@@ -130,13 +207,67 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		561C6930B7B2F04D302EB800 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Herafi-admin-Panel-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F750BFD27CBBDF28C3832D7A /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Herafi-admin-Panel/Pods-Herafi-admin-Panel-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Herafi-admin-Panel/Pods-Herafi-admin-Panel-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		FC4FFCBF219A950E00317E8F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FC4FFCC9219A950E00317E8F /* ViewController.swift in Sources */,
+				FC8E81AD219A97C80062FCE0 /* SignUpController.swift in Sources */,
+				FC8E81B1219A97E10062FCE0 /* MainOrderCell.swift in Sources */,
+				FC8E81B6219A97FB0062FCE0 /* UserProfileController.swift in Sources */,
+				FCE32707219A95C900F534F4 /* Extensions.swift in Sources */,
+				FCE32711219A964F00F534F4 /* MainTabBarController.swift in Sources */,
+				FC8E81B7219A97FB0062FCE0 /* UserprofileHeader.swift in Sources */,
+				FC8E81AB219A97A90062FCE0 /* LoginContoller.swift in Sources */,
 				FC4FFCC7219A950E00317E8F /* AppDelegate.swift in Sources */,
+				FC8E81B2219A97E10062FCE0 /* OrderController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -280,6 +411,7 @@
 		};
 		FC4FFCD6219A951000317E8F /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D9B94EEC1CD9415655C7782E /* Pods-Herafi-admin-Panel.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -298,6 +430,7 @@
 		};
 		FC4FFCD7219A951000317E8F /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 724866B20E3B4B540EE2BB1A /* Pods-Herafi-admin-Panel.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
