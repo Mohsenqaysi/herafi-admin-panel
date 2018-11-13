@@ -1,0 +1,6 @@
+framework module Pods_Herafi_admin_Panel {
+  umbrella header "Pods-Herafi-admin-Panel-umbrella.h"
+
+  export *
+  module * { export * }
+}
