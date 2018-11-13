@@ -77,7 +77,10 @@ class UserProfileController: UICollectionViewController, UICollectionViewDelegat
                 // what hapen? we need to present some kind of log in controller
                 let loginController = LoginContoller()
                 let navController = UINavigationController(rootViewController: loginController)
-                self.present(navController, animated: true, completion: nil)
+                self.present(navController, animated: true, completion: {
+                    // Set the badge to 0 when loggin out a user
+                    UIApplication.shared.applicationIconBadgeNumber = 0
+                })
             } catch let err {
                 print("Falid to log user out", err)
             }

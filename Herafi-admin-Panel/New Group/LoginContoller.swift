@@ -8,8 +8,8 @@
 
 import UIKit
 import Firebase
-
-class LoginContoller: UIViewController {
+//import FirebaseRemoteConfig
+class LoginContoller: UIViewController, UITextFieldDelegate {
     
     let logoContinerview: UIView = {
         let view = UIView()
@@ -52,6 +52,8 @@ class LoginContoller: UIViewController {
     let forgetPasswordButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("نسيت كلمة السر؟", for: .normal)
+        button.isEnabled = false
+        button.alpha = 0.5
         button.setTitleColor(UIColor.rgb(red: 17, green: 154, blue: 237), for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
         //        button.addTarget(self, action: #selector(handelSignUp), for: .touchUpInside)
@@ -146,25 +148,76 @@ class LoginContoller: UIViewController {
         return .default
     }
     
+    fileprivate func showRegisterButton(flag: Bool) {
+        if flag {
+            view.addSubview(dontHaveAccoutButton)
+            dontHaveAccoutButton.anchor(top: nil, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: 0, paddingLeft: 12, paddingBottom: 30, paddingRight: 12, width: 0, height: 50)
+            
+            let topDividerView = UIView()
+            topDividerView.backgroundColor = UIColor(white: 0, alpha: 0.2)
+            view.addSubview(topDividerView)
+            topDividerView.anchor(top: nil, left: view.leftAnchor, bottom: dontHaveAccoutButton.topAnchor, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0.5)
+            
+        }
+    }
+    
+    func updateViewWithRCvalues() {
+        let flag = RemoteConfig.remoteConfig().configValue(forKey: "showRegisterButtonFlag").boolValue
+        print("flag: ", flag)
+        showRegisterButton(flag: flag)
+    }
+    
+    func setupRemoteConfigDefulats() {
+        let defaultvalues: [String: Any?] = [
+            "showDontHaveAccoutButton": true
+        ]
+        
+        RemoteConfig.remoteConfig().setDefaults(defaultvalues as? [String : NSObject])
+    }
+    
+    func fetchRemoteConfig() {
+        //TODO: Chnage this in poduction
+        let debugSettings = RemoteConfigSettings(developerModeEnabled: true)
+        RemoteConfig.remoteConfig().configSettings = debugSettings
+       
+        RemoteConfig.remoteConfig().fetch(withExpirationDuration: 0) { [unowned self ] (status, err) in
+            if let err = err {
+                print("Failed to fetech remoteConfig:", err)
+                return
+            }
+            print("activiate the new settings")
+            RemoteConfig.remoteConfig().activateFetched()
+            self.updateViewWithRCvalues()
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Read and set configirations from firebase config
+        setupRemoteConfigDefulats()
+        updateViewWithRCvalues()
+        fetchRemoteConfig()
+        
         view.backgroundColor = .white
         navigationController?.isNavigationBarHidden = true
         
         view.addSubview(logoContinerview)
         logoContinerview.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 150, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 100)
         
-        view.addSubview(dontHaveAccoutButton)
-        dontHaveAccoutButton.anchor(top: nil, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: 0, paddingLeft: 12, paddingBottom: 30, paddingRight: 12, width: 0, height: 50)
-
-        let topDividerView = UIView()
-        topDividerView.backgroundColor = UIColor(white: 0, alpha: 0.2)
-        view.addSubview(topDividerView)
-        topDividerView.anchor(top: nil, left: view.leftAnchor, bottom: dontHaveAccoutButton.topAnchor, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0.5)
-        
          setupInputsFields()
+        
+        passWordTextField.delegate = self
+        passWordTextField.tag = 0
+        emailTextField.delegate = self
     }
     
+    func textFieldShouldReturn(_ scoreText: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return true
+    }
+    
+ 
     fileprivate func setupInputsFields(){
         let forgotpassStack = UIStackView(arrangedSubviews: [forgetPasswordButton])
         forgotpassStack.axis = .vertical

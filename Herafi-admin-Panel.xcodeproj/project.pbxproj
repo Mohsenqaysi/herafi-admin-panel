@@ -77,6 +77,7 @@
 		FC4FFCBA219A950E00317E8F = {
 			isa = PBXGroup;
 			children = (
+				FC4FFCC6219A950E00317E8F /* AppDelegate.swift */,
 				FCE32706219A95C800F534F4 /* Extensions.swift */,
 				FC4FFCC5219A950E00317E8F /* Herafi-admin-Panel */,
 				FC4FFCC4219A950E00317E8F /* Products */,
@@ -100,7 +101,6 @@
 				FC8E81B3219A97EF0062FCE0 /* userProfile */,
 				FC8E81AE219A97D60062FCE0 /* order */,
 				FC8E81A9219A97780062FCE0 /* Login */,
-				FC4FFCC6219A950E00317E8F /* AppDelegate.swift */,
 				FC4FFCCA219A950E00317E8F /* Main.storyboard */,
 				FCE32710219A964E00F534F4 /* MainTabBarController.swift */,
 				FC4FFCCD219A951000317E8F /* Assets.xcassets */,
