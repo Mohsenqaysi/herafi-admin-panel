@@ -188,6 +188,10 @@ class OrderController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.title = order?.name
+        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationController?.navigationItem.largeTitleDisplayMode = .automatic
+        
         view.backgroundColor = .white
         setupViews()
         setupOrderRejectOrAccespView()
