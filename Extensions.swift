@@ -16,6 +16,20 @@ extension UIColor {
 }
 
 extension UIView {
+    static func loadViewFromNib(for nibName: String) -> UIView {
+        let nib = UINib(nibName: nibName, bundle: nil)
+        let nibView = nib.instantiate(withOwner: self, options: nil).first as! UIView
+        return nibView
+    }
+}
+
+extension UIView {
+    class func fromNib<T: UIView>() -> T {
+        return Bundle.main.loadNibNamed(String(describing: T.self), owner: nil, options: nil)![0] as! T
+    }
+}
+
+extension UIView {
     func anchor(top: NSLayoutYAxisAnchor?, left: NSLayoutXAxisAnchor?, bottom: NSLayoutYAxisAnchor?, right: NSLayoutXAxisAnchor?, paddingTop: CGFloat, paddingLeft: CGFloat, paddingBottom: CGFloat, paddingRight: CGFloat, width: CGFloat, height: CGFloat) {
         
         translatesAutoresizingMaskIntoConstraints = false

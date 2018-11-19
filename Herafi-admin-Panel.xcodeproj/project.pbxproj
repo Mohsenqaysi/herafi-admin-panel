@@ -22,6 +22,8 @@
 		FC8E81B6219A97FB0062FCE0 /* UserProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC8E81B4219A97FB0062FCE0 /* UserProfileController.swift */; };
 		FC8E81B7219A97FB0062FCE0 /* UserprofileHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC8E81B5219A97FB0062FCE0 /* UserprofileHeader.swift */; };
 		FC8E81B9219A98B70062FCE0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FC8E81B8219A98B70062FCE0 /* GoogleService-Info.plist */; };
+		FCB0247D21A36C0F00CA1F8C /* ActivityIndecatroView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCB0247B21A36C0F00CA1F8C /* ActivityIndecatroView.swift */; };
+		FCB0247E21A36C0F00CA1F8C /* ActivityIndecatroView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FCB0247C21A36C0F00CA1F8C /* ActivityIndecatroView.xib */; };
 		FCE32707219A95C900F534F4 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCE32706219A95C800F534F4 /* Extensions.swift */; };
 		FCE32711219A964F00F534F4 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCE32710219A964E00F534F4 /* MainTabBarController.swift */; };
 /* End PBXBuildFile section */
@@ -47,6 +49,8 @@
 		FC8E81B4219A97FB0062FCE0 /* UserProfileController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileController.swift; sourceTree = "<group>"; };
 		FC8E81B5219A97FB0062FCE0 /* UserprofileHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserprofileHeader.swift; sourceTree = "<group>"; };
 		FC8E81B8219A98B70062FCE0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		FCB0247B21A36C0F00CA1F8C /* ActivityIndecatroView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndecatroView.swift; sourceTree = "<group>"; };
+		FCB0247C21A36C0F00CA1F8C /* ActivityIndecatroView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ActivityIndecatroView.xib; sourceTree = "<group>"; };
 		FCE32706219A95C800F534F4 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		FCE32710219A964E00F534F4 /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MainTabBarController.swift; path = "../../../../Google Drive/InstagramFirebaseApp/HerafiAdmin/HerafiAdmin/MainTabBarController.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -103,6 +107,7 @@
 		FC4FFCC5219A950E00317E8F /* Herafi-admin-Panel */ = {
 			isa = PBXGroup;
 			children = (
+				FCB0247A21A36B9F00CA1F8C /* activity Indecator */,
 				FC605895219B23C4008DA4FC /* Herafi-admin-Panel.entitlements */,
 				FC66E7F4219F95C0008AD335 /* history Order Cell */,
 				FC8E81B3219A97EF0062FCE0 /* userProfile */,
@@ -155,6 +160,15 @@
 			);
 			name = userProfile;
 			path = "New Group1";
+			sourceTree = "<group>";
+		};
+		FCB0247A21A36B9F00CA1F8C /* activity Indecator */ = {
+			isa = PBXGroup;
+			children = (
+				FCB0247B21A36C0F00CA1F8C /* ActivityIndecatroView.swift */,
+				FCB0247C21A36C0F00CA1F8C /* ActivityIndecatroView.xib */,
+			);
+			path = "activity Indecator";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -225,6 +239,7 @@
 				FC4FFCD1219A951000317E8F /* LaunchScreen.storyboard in Resources */,
 				FC8E81B9219A98B70062FCE0 /* GoogleService-Info.plist in Resources */,
 				FC4FFCCE219A951000317E8F /* Assets.xcassets in Resources */,
+				FCB0247E21A36C0F00CA1F8C /* ActivityIndecatroView.xib in Resources */,
 				FC66E7F8219F95FD008AD335 /* HistoryCollectionCell.xib in Resources */,
 				FC4FFCCC219A950E00317E8F /* Main.storyboard in Resources */,
 			);
@@ -289,6 +304,7 @@
 				FC8E81B6219A97FB0062FCE0 /* UserProfileController.swift in Sources */,
 				FCE32707219A95C900F534F4 /* Extensions.swift in Sources */,
 				FC66E7FA219F9FED008AD335 /* OrdersHistoryCollectionViewController.swift in Sources */,
+				FCB0247D21A36C0F00CA1F8C /* ActivityIndecatroView.swift in Sources */,
 				FCE32711219A964F00F534F4 /* MainTabBarController.swift in Sources */,
 				FC8E81B7219A97FB0062FCE0 /* UserprofileHeader.swift in Sources */,
 				FC8E81AB219A97A90062FCE0 /* LoginContoller.swift in Sources */,
