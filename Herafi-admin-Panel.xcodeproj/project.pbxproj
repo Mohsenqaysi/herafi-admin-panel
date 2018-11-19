@@ -12,6 +12,9 @@
 		FC4FFCCC219A950E00317E8F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FC4FFCCA219A950E00317E8F /* Main.storyboard */; };
 		FC4FFCCE219A951000317E8F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FC4FFCCD219A951000317E8F /* Assets.xcassets */; };
 		FC4FFCD1219A951000317E8F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FC4FFCCF219A951000317E8F /* LaunchScreen.storyboard */; };
+		FC66E7F7219F95FD008AD335 /* HistoryCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC66E7F5219F95FD008AD335 /* HistoryCollectionCell.swift */; };
+		FC66E7F8219F95FD008AD335 /* HistoryCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC66E7F6219F95FD008AD335 /* HistoryCollectionCell.xib */; };
+		FC66E7FA219F9FED008AD335 /* OrdersHistoryCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC66E7F9219F9FED008AD335 /* OrdersHistoryCollectionViewController.swift */; };
 		FC8E81AB219A97A90062FCE0 /* LoginContoller.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC8E81AA219A97A90062FCE0 /* LoginContoller.swift */; };
 		FC8E81AD219A97C80062FCE0 /* SignUpController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC8E81AC219A97C80062FCE0 /* SignUpController.swift */; };
 		FC8E81B1219A97E10062FCE0 /* MainOrderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC8E81AF219A97E10062FCE0 /* MainOrderCell.swift */; };
@@ -34,6 +37,9 @@
 		FC4FFCD0219A951000317E8F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FC4FFCD2219A951000317E8F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FC605895219B23C4008DA4FC /* Herafi-admin-Panel.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Herafi-admin-Panel.entitlements"; sourceTree = "<group>"; };
+		FC66E7F5219F95FD008AD335 /* HistoryCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryCollectionCell.swift; sourceTree = "<group>"; };
+		FC66E7F6219F95FD008AD335 /* HistoryCollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HistoryCollectionCell.xib; sourceTree = "<group>"; };
+		FC66E7F9219F9FED008AD335 /* OrdersHistoryCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersHistoryCollectionViewController.swift; sourceTree = "<group>"; };
 		FC8E81AA219A97A90062FCE0 /* LoginContoller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginContoller.swift; sourceTree = "<group>"; };
 		FC8E81AC219A97C80062FCE0 /* SignUpController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpController.swift; sourceTree = "<group>"; };
 		FC8E81AF219A97E10062FCE0 /* MainOrderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainOrderCell.swift; sourceTree = "<group>"; };
@@ -98,6 +104,7 @@
 			isa = PBXGroup;
 			children = (
 				FC605895219B23C4008DA4FC /* Herafi-admin-Panel.entitlements */,
+				FC66E7F4219F95C0008AD335 /* history Order Cell */,
 				FC8E81B3219A97EF0062FCE0 /* userProfile */,
 				FC8E81AE219A97D60062FCE0 /* order */,
 				FC8E81A9219A97780062FCE0 /* Login */,
@@ -109,6 +116,16 @@
 				FC8E81B8219A98B70062FCE0 /* GoogleService-Info.plist */,
 			);
 			path = "Herafi-admin-Panel";
+			sourceTree = "<group>";
+		};
+		FC66E7F4219F95C0008AD335 /* history Order Cell */ = {
+			isa = PBXGroup;
+			children = (
+				FC66E7F5219F95FD008AD335 /* HistoryCollectionCell.swift */,
+				FC66E7F6219F95FD008AD335 /* HistoryCollectionCell.xib */,
+				FC66E7F9219F9FED008AD335 /* OrdersHistoryCollectionViewController.swift */,
+			);
+			path = "history Order Cell";
 			sourceTree = "<group>";
 		};
 		FC8E81A9219A97780062FCE0 /* Login */ = {
@@ -208,6 +225,7 @@
 				FC4FFCD1219A951000317E8F /* LaunchScreen.storyboard in Resources */,
 				FC8E81B9219A98B70062FCE0 /* GoogleService-Info.plist in Resources */,
 				FC4FFCCE219A951000317E8F /* Assets.xcassets in Resources */,
+				FC66E7F8219F95FD008AD335 /* HistoryCollectionCell.xib in Resources */,
 				FC4FFCCC219A950E00317E8F /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -270,10 +288,12 @@
 				FC8E81B1219A97E10062FCE0 /* MainOrderCell.swift in Sources */,
 				FC8E81B6219A97FB0062FCE0 /* UserProfileController.swift in Sources */,
 				FCE32707219A95C900F534F4 /* Extensions.swift in Sources */,
+				FC66E7FA219F9FED008AD335 /* OrdersHistoryCollectionViewController.swift in Sources */,
 				FCE32711219A964F00F534F4 /* MainTabBarController.swift in Sources */,
 				FC8E81B7219A97FB0062FCE0 /* UserprofileHeader.swift in Sources */,
 				FC8E81AB219A97A90062FCE0 /* LoginContoller.swift in Sources */,
 				FC4FFCC7219A950E00317E8F /* AppDelegate.swift in Sources */,
+				FC66E7F7219F95FD008AD335 /* HistoryCollectionCell.swift in Sources */,
 				FC8E81B2219A97E10062FCE0 /* OrderController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -422,6 +442,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "Herafi-admin-Panel/Herafi-admin-Panel.entitlements";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8FGH63V8Q9;
 				INFOPLIST_FILE = "Herafi-admin-Panel/Info.plist";
@@ -432,6 +453,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "sa.herafi.Herafi-admin-Panel";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -443,6 +465,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "Herafi-admin-Panel/Herafi-admin-Panel.entitlements";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8FGH63V8Q9;
 				INFOPLIST_FILE = "Herafi-admin-Panel/Info.plist";
@@ -453,6 +476,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "sa.herafi.Herafi-admin-Panel";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
 			};

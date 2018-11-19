@@ -13,7 +13,12 @@ class OrderController: UIViewController {
     
     var order: Order? {
         didSet{
-            orderDataLable.text = order?.dateNow
+            
+            guard let date = order?.dateNow else {return}
+            print("MainOrderCell timeStamp:", date)
+            guard let convertedDate = String.convertDate(currentTimeInMiliseconds: date) else {return}
+             orderDateLable.text = convertedDate
+            
             nameLable.text = order?.name
             servieLable.text = order?.service
             guard let messageCount = order?.message.count else { return }
@@ -37,7 +42,7 @@ class OrderController: UIViewController {
         return label
     }()
     
-    let orderDataLable: UILabel = {
+    let orderDateLable: UILabel = {
         let label = UILabel()
         label.text = "order data"
         label.textAlignment = .center
@@ -136,15 +141,18 @@ class OrderController: UIViewController {
         guard let order = order else {return}
         guard let key = self.order?.key else {return}
         
-        let dictionary = ["dataNow": order.dateNow, "name": order.name, "orderStatutsAccepted": true, "phone": order.phone, "service": order.service] as [String : Any]
-        let vlaues = [key: dictionary]
-        Database.database().reference().child("completedOrders").updateChildValues(vlaues) { (err, snapshot) in
+        let timeStamp = ServerValue.timestamp()
+        let dictionary: [String: Any] = ["timeStamp": timeStamp , "name": order.name, "orderStatutsAccepted": true, "phone": order.phone, "service": order.service]
+        let values = [key: dictionary]
+        // save to the completedOrdersTest tree
+        Database.database().reference().child("completedOrdersTest").updateChildValues(values) { (err, snapshot) in
             if let err = err {
                 print("Falied to save data", err)
                 return
             }
             
-            Database.database().reference().child("orders").child(key).setValue(nil) { (err, snapshot) in
+            // remove order from the ordersTest tree
+            Database.database().reference().child("ordersTest").child(key).setValue(nil) { (err, snapshot) in
                 if let err = err {
                     print("Could not remove child id \(key) err: \(err)")
                 }
@@ -169,7 +177,7 @@ class OrderController: UIViewController {
     
     @objc func handelRejectionOrderAction(){
         guard let key = self.order?.key else {return}
-        Database.database().reference().child("orders").child(key).setValue(nil) { (err, snapshot) in
+        Database.database().reference().child("ordersTest").child(key).setValue(nil) { (err, snapshot) in
             if let err = err {
                 print("Could not remove child id \(key) err: \(err)")
             }
@@ -190,11 +198,11 @@ class OrderController: UIViewController {
         view.addSubview(orderDataLableOrderTitleLabel)
         orderDataLableOrderTitleLabel.anchor(top: view.safeAreaLayoutGuide.topAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 4, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 30)
         
-        view.addSubview(orderDataLable)
-        orderDataLable.anchor(top: orderDataLableOrderTitleLabel.bottomAnchor, left: orderDataLableOrderTitleLabel.leftAnchor, bottom: nil, right: orderDataLableOrderTitleLabel.rightAnchor, paddingTop: 2, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 30)
+        view.addSubview(orderDateLable)
+        orderDateLable.anchor(top: orderDataLableOrderTitleLabel.bottomAnchor, left: orderDataLableOrderTitleLabel.leftAnchor, bottom: nil, right: orderDataLableOrderTitleLabel.rightAnchor, paddingTop: 2, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 30)
         
         view.addSubview(nameTitleLabel)
-        nameTitleLabel.anchor(top: orderDataLable.bottomAnchor, left: orderDataLable.leftAnchor, bottom: nil, right: orderDataLable.rightAnchor, paddingTop: 3, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 30)
+        nameTitleLabel.anchor(top: orderDateLable.bottomAnchor, left: orderDateLable.leftAnchor, bottom: nil, right: orderDateLable.rightAnchor, paddingTop: 3, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 30)
         
         view.addSubview(nameLable)
         nameLable.anchor(top: nameTitleLabel.bottomAnchor, left: nameTitleLabel.leftAnchor, bottom: nil, right: nameTitleLabel.rightAnchor, paddingTop: 2, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 30)

@@ -110,7 +110,7 @@ class UserProfileHeader: UICollectionViewCell  {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
+//        backgroundColor = UIColor.rgb(red: 17, green: 154, blue: 237)
         // add image profile
         addSubview(profileImageView)
         profileImageView.anchor(top: self.topAnchor, left: self.leftAnchor, bottom: nil, right: nil, paddingTop: 12, paddingLeft: 12, paddingBottom: 0, paddingRight: 0, width: 80, height: 80)
@@ -137,8 +137,8 @@ class UserProfileHeader: UICollectionViewCell  {
         stackView.anchor(top: self.topAnchor, left: profileImageView.rightAnchor, bottom: nil, right: self.rightAnchor, paddingTop: 12, paddingLeft: 12, paddingBottom: 0, paddingRight: 12, width: 0, height: 50)
         
         // add edit button
-        addSubview(editProfileButton)
-        editProfileButton.anchor(top: postLabel.bottomAnchor, left: postLabel.leftAnchor, bottom: nil, right: followingLabel.rightAnchor, paddingTop: 5, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 34)
+//        addSubview(editProfileButton)
+//        editProfileButton.anchor(top: postLabel.bottomAnchor, left: postLabel.leftAnchor, bottom: nil, right: followingLabel.rightAnchor, paddingTop: 5, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 34)
 //        editProfileButton.layer.cornerRadius = 5
     }
     

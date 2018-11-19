@@ -12,9 +12,42 @@ class MainOrderCell: UICollectionViewCell {
     
     var order: Order? {
         didSet{
-            dataLableText.text = order?.dateNow
-
+            guard let date = order?.dateNow else {return}
+            print("MainOrderCell timeStamp:", date)
+            guard let convertedDate = String.convertDate(currentTimeInMiliseconds: date) else {return}
+            dataLableText.text = convertedDate
+            
             switch order?.service {
+            case "خدمات الكهرباء":
+                cellIcon.image = #imageLiteral(resourceName: "electrical")
+            case "خدمات السباكة":
+                cellIcon.image = #imageLiteral(resourceName: "water-pipe")
+            case "خدمات التكييف":
+                cellIcon.image = #imageLiteral(resourceName: "air-conditioner")
+            case "خدمات الكمبيوتر":
+                cellIcon.image = #imageLiteral(resourceName: "laptop-outline")
+            default:
+                break
+            }
+        }
+    }
+    
+    var orderCompleted: Order? {
+        didSet{
+            guard let name = orderCompleted?.name else {return}
+            dataTitleLable.text = name
+            
+            guard let date = orderCompleted?.dateNow else {return}
+            print("MainOrderCell timeStamp:", date)
+            guard let convertedDate = String.convertDate(currentTimeInMiliseconds: date) else {return}
+            dataLableText.text = convertedDate
+            
+            guard let service = orderCompleted?.service else {
+                print("Failed to load icon")
+                return
+            }
+            
+            switch service {
             case "خدمات الكهرباء":
                 cellIcon.image = #imageLiteral(resourceName: "electrical")
             case "خدمات السباكة":

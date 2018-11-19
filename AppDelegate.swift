@@ -26,7 +26,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUser
         window?.rootViewController = MainTabBarController()
         
         attemtRegisteringForPushNotifications(application: application)
+        
+        // chnage the app langauge
+        ChangeLayout()
         return true
+    }
+    
+    func ChangeLayout(){
+        if let value = UserDefaults.standard.string(forKey: "Applanguage") {
+            if(value == "ar"){
+                print("App language: \(value)")
+                UIView.appearance().semanticContentAttribute = .forceRightToLeft
+            }else{
+                print("App language: \(value)")
+                UIView.appearance().semanticContentAttribute = .forceLeftToRight
+            }
+        }
     }
     
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
@@ -48,7 +63,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUser
         if let orderID = userinfo["orderId"] as? String {
             print("orderId: \(orderID)")
             print("order data from AppDeleagte")
-            Database.fetchOrderData(orderId: orderID) { (order) in
+            Database.fetchOrderDataWithId(orderId: orderID, path: "orders") { (order) in
                 //MARK: - push data to the the order view controller
                 let orderContoller = OrderController()
                 orderContoller.order = order

@@ -10,10 +10,8 @@ import UIKit
 import Firebase
 
 extension Database {
-    static func fetchOrderData(orderId: String, completion: @escaping (Order) -> ()) {
-        print("order ID: \(orderId)")
-        
-        Database.database().reference().child("orders").child(orderId).observeSingleEvent(of: .value, with: { (snapshot) in
+    static func fetchOrderDataWithId(orderId: String, path: String, completion: @escaping (Order) -> ()) {
+        Database.database().reference().child(path).child(orderId).observeSingleEvent(of: .value, with: { (snapshot) in
             guard let dictonary =  snapshot.value as? [String: Any] else {return}
             let order = Order(key: orderId, dictionary: dictonary)
             completion(order)
@@ -21,7 +19,28 @@ extension Database {
             print("Failed to fetch order data", err)
         }
     }
+    
+    static func fetchOrders(path: String, completion: @escaping ([DataSnapshot]) -> ()) {
+        var comletedOrders = [DataSnapshot]()
+        Database.database().reference().child(path).observeSingleEvent(of: .value, with: { (snapshots) in
+            
+            //TODO: Cehck the casting values on line 31
+            for child in snapshots.children {
+                guard let snapshot = child as? DataSnapshot else {return}
+                
+                if let timeStamp = snapshot.value as? String {
+                    print("snapshot timeStamp: \(snapshot)")
+                }
+                
+                comletedOrders.insert(snapshot, at: 0)
+            }
+            completion(comletedOrders)
+        }) { (err) in
+            print("Failed to fetch order data", err)
+        }
+    }
 }
+
 class UserProfileController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     let headerId = "headerId"
     let cellId = "cellId"
@@ -29,11 +48,11 @@ class UserProfileController: UICollectionViewController, UICollectionViewDelegat
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        Database.database().reference().child("orders").observe(DataEventType.childAdded) { (snapshot) in
+        Database.database().reference().child("ordersTest").observe(DataEventType.childAdded) { (snapshot) in
             self.fetchOrdersAdded(snapshot: snapshot)
         }
         
-        Database.database().reference().child("orders").observe(DataEventType.childRemoved) { (snapshot) in
+        Database.database().reference().child("ordersTest").observe(DataEventType.childRemoved) { (snapshot) in
             let index = self.ordersList.index{ $0.key == snapshot.key}
             if let index = index {
                 self.ordersList.remove(at: index)
@@ -41,18 +60,28 @@ class UserProfileController: UICollectionViewController, UICollectionViewDelegat
             self.collectionView.reloadData()
         }
         
-        Database.database().reference().child("completedOrders").observe(DataEventType.childAdded) { (snapshot) in
+        Database.database().reference().child("completedOrdersTest").observe(DataEventType.childAdded) { (snapshot) in
             guard let dictionary = snapshot.value as? [String: Any] else {return}
             let order = Order(key: snapshot.key, dictionary: dictionary)
             self.completedOrdersList.append(order)
             self.collectionView.reloadData()
         }
         
+        Database.database().reference().child("completedOrdersTest").observeSingleEvent(of: .value, with: { (snapshot) in
+            guard let dictionary = snapshot.value as? [String: Any] else {return}
+            let order = Order(key: snapshot.key, dictionary: dictionary)
+            print("completedOrdersTest \(order)")
+            self.completedOrdersList.append(order)
+            self.collectionView.reloadData()
+        }, withCancel: { (err) in
+            print(err)
+        })
+        
         collectionView.backgroundColor = .white
         navigationItem.title = Auth.auth().currentUser?.uid
         
         fetchUser()
-
+        
         
         // MARK: - register the header view
         collectionView?.register(UserProfileHeader.self, forSupplementaryViewOfKind: "UICollectionElementKindSectionHeader", withReuseIdentifier: headerId)
@@ -103,12 +132,15 @@ class UserProfileController: UICollectionViewController, UICollectionViewDelegat
         let width = (view.frame.width - 2)
         return CGSize(width: width, height: 60)
     }
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 5
     }
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 1
     }
+    
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerId, for: indexPath) as! UserProfileHeader
         header.user = self.user
@@ -167,7 +199,7 @@ class UserProfileController: UICollectionViewController, UICollectionViewDelegat
     fileprivate func fetchCompletedOrders(){
         completedOrdersList = []
         //MARK: get user profile info
-        Database.database().reference().child("completedOrders").observe(.value, with: { (snapshot) in
+        Database.database().reference().child("completedOrdersTest").observe(.value, with: { (snapshot) in
             guard let dictionary = snapshot.value as? [String: Any] else {return}
             
             dictionary.forEach({ (key, order) in
@@ -199,16 +231,31 @@ struct Order {
     let phone: String
     let service: String
     let message: String
-    let dateNow: String
+    let dateNow: Double
     let orderStatutsAccepted: String
-
+    
     init(key: String, dictionary: [String: Any]) {
         self.key = key
         self.name = dictionary["name"] as? String ?? ""
         self.phone = dictionary["phone"] as? String ?? ""
         self.service = dictionary["service"] as? String ?? ""
         self.message = dictionary["message"] as? String ?? ""
-        self.dateNow = dictionary["dateNow"] as? String ?? ""
         self.orderStatutsAccepted = dictionary["orderStatutsAccepted"] as? String ?? ""
+        self.dateNow = dictionary["timeStamp"] as? Double ?? 0
+    }
+    
+}
+
+
+extension String {
+    static func convertDate(currentTimeInMiliseconds: TimeInterval) -> String? {
+        let dateTimeStamp = Date(timeIntervalSince1970: Double(currentTimeInMiliseconds)/1000)
+        let dateFormatter = DateFormatter()
+        dateFormatter.timeZone = NSTimeZone.local
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        dateFormatter.dateStyle = .short
+        dateFormatter.timeStyle = .short
+        let strDateSelect = dateFormatter.string(from: dateTimeStamp)
+        return strDateSelect
     }
 }
