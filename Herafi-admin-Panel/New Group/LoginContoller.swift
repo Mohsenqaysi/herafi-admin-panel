@@ -91,15 +91,11 @@ class LoginContoller: UIViewController, UITextFieldDelegate {
                 self.loginButtonActivityIndicator(false)
                 return
             }
-            
-            guard let uid = user?.user.uid else {return}
-            print("Successfully")
-            print(uid)
-            guard let mainTabBarController = UIApplication.shared.keyWindow?.rootViewController as? MainTabBarController else {return}
-            mainTabBarController.setupViewController()
-            self.activityIndicator.stopAnimating()
-            self.dismiss(animated: true, completion: nil)
-        }
+                print("Sccessfully saved user info into db")
+                guard let mainTabBarController = UIApplication.shared.keyWindow?.rootViewController as? MainTabBarController else {return}
+                mainTabBarController.setupViewController()
+                self.dismiss(animated: true, completion: nil)
+            }
     }
     
     func loginButtonActivityIndicator(_ isAnimating: Bool) {

@@ -46,10 +46,32 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUser
     
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         print("Token: \(deviceToken.debugDescription)")
+        
+        #if DEVELOPMENT
+        //Develop
+       Messaging.messaging().setAPNSToken(deviceToken as Data, type: .sandbox)
+        #else
+        //Production
+       Messaging.messaging().setAPNSToken(deviceToken as Data, type: .prod)
+        #endif
     }
     
     func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String) {
         print("Registered with FCM with token: \(fcmToken)")
+        
+        //MARK: - Update the fcmToken if the app is deleted or updated
+        // get the fcmToken for the user device
+        guard let fcmToken = Messaging.messaging().fcmToken else {return}
+        guard let uid = Auth.auth().currentUser?.uid else {return}
+        print("uid: \(uid)")
+        
+        let values: [String: Any] = ["fcmToken": fcmToken]
+        Database.database().reference().child("users").child(uid).updateChildValues(values) { (err, snapshot) in
+            if let err = err {
+                print("Failed to save user info to databse \(err)")
+                return
+            }
+        }
     }
     
     // listen for user notifications and present notification on the forground of the app
@@ -63,7 +85,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUser
         if let orderID = userinfo["orderId"] as? String {
             print("orderId: \(orderID)")
             print("order data from AppDeleagte")
-            Database.fetchOrderDataWithId(orderId: orderID, path: "orders") { (order) in
+            Database.fetchOrderDataWithId(orderId: orderID, path: "ordersTest") { (order) in
                 //MARK: - push data to the the order view controller
                 let orderContoller = OrderController()
                 orderContoller.order = order

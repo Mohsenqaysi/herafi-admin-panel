@@ -28,10 +28,10 @@ extension Database {
             for child in snapshots.children {
                 guard let snapshot = child as? DataSnapshot else {return}
                 
-                if let timeStamp = snapshot.value as? String {
-                    print("snapshot timeStamp: \(snapshot)")
-                }
-                
+//                if let timeStamp = snapshot.value as? String {
+//                    print("snapshot timeStamp: \(snapshot)")
+//                }
+//                
                 comletedOrders.insert(snapshot, at: 0)
             }
             completion(comletedOrders)

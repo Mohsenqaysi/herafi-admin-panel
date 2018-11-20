@@ -148,6 +148,7 @@ class SignUpController: UIViewController {
                     // get the fcmToken for the user device 
                     guard let fcmToken = Messaging.messaging().fcmToken else {return}
                     
+                    
                     let dictionaryVlaues = ["username": username, "profileImageUrl": url, "fcmToken": fcmToken]
                     let values = [uid: dictionaryVlaues]
                     
