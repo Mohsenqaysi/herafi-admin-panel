@@ -91,11 +91,24 @@ class LoginContoller: UIViewController, UITextFieldDelegate {
                 self.loginButtonActivityIndicator(false)
                 return
             }
+            
+            // get the fcmToken for the user device
+            guard let fcmToken = Messaging.messaging().fcmToken else {return}
+            guard let uid = Auth.auth().currentUser?.uid else {return}
+            print("uid: \(uid)")
+            
+            let values: [String: Any] = ["fcmToken": fcmToken]
+            Database.database().reference().child("users").child(uid).updateChildValues(values) { (err, snapshot) in
+                if let err = err {
+                    print("Failed to save user info to databse \(err)")
+                    return
+                }
                 print("Sccessfully saved user info into db")
                 guard let mainTabBarController = UIApplication.shared.keyWindow?.rootViewController as? MainTabBarController else {return}
                 mainTabBarController.setupViewController()
                 self.dismiss(animated: true, completion: nil)
             }
+        }
     }
     
     func loginButtonActivityIndicator(_ isAnimating: Bool) {
