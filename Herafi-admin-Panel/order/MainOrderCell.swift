@@ -27,7 +27,7 @@ class MainOrderCell: UICollectionViewCell {
             case "خدمات الكمبيوتر":
                 cellIcon.image = #imageLiteral(resourceName: "laptop-outline")
             default:
-                break
+                 cellIcon.image = #imageLiteral(resourceName: "Herafi_logo_black")
             }
         }
     }
@@ -57,14 +57,14 @@ class MainOrderCell: UICollectionViewCell {
             case "خدمات الكمبيوتر":
                 cellIcon.image = #imageLiteral(resourceName: "laptop-outline")
             default:
-                break
+                cellIcon.image = #imageLiteral(resourceName: "Herafi_logo_black")
             }
         }
     }
     
     let cellIcon: UIImageView = {
         let iv = UIImageView()
-        iv.image = #imageLiteral(resourceName: "electrical")
+        iv.image = #imageLiteral(resourceName: "Herafi_logo_black")
         iv.contentMode = .scaleAspectFit
         iv.backgroundColor = UIColor(white: 0, alpha: 0.1)
         iv.layer.borderColor = UIColor.black.cgColor

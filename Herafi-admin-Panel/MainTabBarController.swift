@@ -25,15 +25,34 @@ class MainTabBarController: UITabBarController {
         setupViewController()
     }
     
+    
     func setupViewController(){
+        
+        let userNavProfileController = templeteNavContrller(selectedImage: #imageLiteral(resourceName: "profile_selected"), unselectedImage: #imageLiteral(resourceName: "profile_unselected"), title: "الطلبات المفتوحة", rootViewController: UserProfileController(collectionViewLayout: UICollectionViewFlowLayout()))
+        
+        let historyOrdersNavController = templeteNavContrller(selectedImage: #imageLiteral(resourceName: "order_selected"), unselectedImage: #imageLiteral(resourceName: "order_unselected"), title: "الطلبات المقفلة", rootViewController: OrdersHistoryCollectionViewController(collectionViewLayout: UICollectionViewFlowLayout()))
+
         //MARK: UICollectionViewFlowLayout is very important and NOT UICollectionViewLayout
         // user profile
-        let layout = UICollectionViewFlowLayout()
-        let userProfileController = UserProfileController(collectionViewLayout: layout)
-        let navController = UINavigationController(rootViewController: userProfileController)
-        navController.tabBarItem.image = #imageLiteral(resourceName: "profile_unselected")
-        navController.tabBarItem.selectedImage = #imageLiteral(resourceName: "profile_selected")
+        
         tabBar.tintColor = .black
-        viewControllers = [navController]
+        viewControllers = [userNavProfileController,historyOrdersNavController]
+        
+        guard let items = tabBar.items else {return}
+        for item in items {
+            item.imageInsets = UIEdgeInsets(top: 4, left: 0, bottom: -4, right: 0)
+        }
+        
+    }
+    
+    fileprivate func templeteNavContrller(selectedImage: UIImage, unselectedImage: UIImage, title: String?, rootViewController: UIViewController = UIViewController()) -> UINavigationController {
+        let viewController = rootViewController
+        let navController = UINavigationController(rootViewController: viewController)
+        navController.tabBarItem.image = unselectedImage
+        navController.tabBarItem.selectedImage = selectedImage
+        if let title = title {
+            navController.tabBarItem.title = title
+        }
+        return navController
     }
 }

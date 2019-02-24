@@ -88,6 +88,8 @@ class OrdersHistoryCollectionViewController: UICollectionViewController, UIColle
             for snapshot in snapshots {
                 self.fetchOrdersHistory(snapshot: snapshot, completion: {
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
+                        self.completedOrdersList.reverse()
+                        self.collectionView.reloadData()
                         self.indecator.stopAnimating()
                         self.activityIndecatroView.removeFromSuperview()
                     })
@@ -98,11 +100,15 @@ class OrdersHistoryCollectionViewController: UICollectionViewController, UIColle
     
 
     fileprivate func fetchOrdersHistory(snapshot: DataSnapshot, completion: @escaping () -> () ){
-        guard let dictionary = snapshot.value as? [String: Any] else {return}
+        
+        guard let dictionary = snapshot.value as? [String: Any] else {
+            self.indecator.stopAnimating()
+            self.activityIndecatroView.removeFromSuperview()
+            return
+        }
 
         let order = Order(key: snapshot.key, dictionary: dictionary)
         self.completedOrdersList.insert(order, at: 0)
-        self.collectionView.reloadData()
         completion()
     }
     

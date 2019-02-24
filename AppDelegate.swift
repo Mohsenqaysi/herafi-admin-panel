@@ -28,7 +28,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUser
         attemtRegisteringForPushNotifications(application: application)
         
         // chnage the app langauge
-        ChangeLayout()
+//        ChangeLayout()
         return true
     }
     
@@ -92,7 +92,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUser
                 
                 if let mainTabBarContoller = self.window?.rootViewController as? MainTabBarController {
                     mainTabBarContoller.selectedIndex = 0
-//                    mainTabBarContoller.presentedViewController?.dismiss(animated: true, completion: nil)
+                   
                     if let homenavigationContoller = mainTabBarContoller.viewControllers?.first as? UINavigationController {
                         homenavigationContoller.popViewController(animated: true)
                         orderContoller.hidesBottomBarWhenPushed = true
